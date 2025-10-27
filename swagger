@@ -1,0 +1,636 @@
+openapi: 3.0.3
+info:
+  title: Social Media – Posts API
+  version: 1.0.0
+  description: |
+    REST API for Posts, Interactions, Comments, Groups, Moderation, and Media uploads.
+servers:
+  - url: https://api.example.com/api/v1
+    description: Production
+  - url: https://staging.api.example.com/api/v1
+    description: Staging
+
+security:
+  - bearerAuth: []
+
+tags:
+  - name: Posts
+  - name: Interactions
+  - name: Comments
+  - name: Groups
+  - name: Media
+  - name: Admin
+
+paths:
+  /posts:
+    post:
+      tags: [Posts]
+      summary: Create a post
+      security: [{ bearerAuth: [] }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePostRequest'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostResponse'
+    get:
+      tags: [Posts]
+      summary: List posts (feed/search)
+      parameters:
+        - in: query
+          name: type
+          schema: { $ref: '#/components/schemas/PostType' }
+        - in: query
+          name: group_id
+          schema: { type: string, format: uuid }
+        - in: query
+          name: visibility
+          schema: { $ref: '#/components/schemas/PostVisibility' }
+        - in: query
+          name: from
+          description: ISO8601 start datetime
+          schema: { type: string, format: date-time }
+        - in: query
+          name: to
+          description: ISO8601 end datetime
+          schema: { type: string, format: date-time }
+        - in: query
+          name: q
+          description: Search text / hashtag
+          schema: { type: string }
+        - in: query
+          name: page_size
+          schema: { type: integer, minimum: 1, maximum: 100, default: 20 }
+        - in: query
+          name: cursor
+          schema: { type: string }
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostListResponse'
+
+  /posts/{id}:
+    get:
+      tags: [Posts]
+      summary: Get post by id
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostResponse'
+    delete:
+      tags: [Posts]
+      summary: Delete (soft) a post
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        '204': { description: No Content }
+
+  /posts/{id}/toggle-comments:
+    put:
+      tags: [Admin]
+      summary: Toggle comments on a post (admin or owner if allowed)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ToggleFlagRequest'
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostResponse'
+
+  /posts/{id}/toggle-likes:
+    put:
+      tags: [Admin]
+      summary: Toggle likes on a post (admin)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/ToggleFlagRequest' }
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/PostResponse' }
+
+  /posts/{id}/like:
+    put:
+      tags: [Interactions]
+      summary: Like a post (idempotent)
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        '204': { description: No Content }
+    delete:
+      tags: [Interactions]
+      summary: Unlike a post
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        '204': { description: No Content }
+
+  /posts/{id}/bookmark:
+    put:
+      tags: [Interactions]
+      summary: Bookmark a post (idempotent)
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        '204': { description: No Content }
+    delete:
+      tags: [Interactions]
+      summary: Remove bookmark
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        '204': { description: No Content }
+
+  /posts/{id}/share:
+    post:
+      tags: [Interactions]
+      summary: Share a post (internal or link)
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string, format: uuid }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ShareRequest'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShareResponse'
+
+  /posts/{id}/comments:
+    get:
+      tags: [Comments]
+      summary: List comments for a post
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string, format: uuid }
+        - in: query
+          name: cursor
+          schema: { type: string }
+        - in: query
+          name: page_size
+          schema: { type: integer, minimum: 1, maximum: 100, default: 50 }
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommentListResponse'
+    post:
+      tags: [Comments]
+      summary: Create comment or reply
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string, format: uuid }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCommentRequest'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommentResponse'
+
+  /comments/{comment_id}:
+    delete:
+      tags: [Comments]
+      summary: Delete a comment
+      parameters:
+        - in: path
+          name: comment_id
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        '204': { description: No Content }
+
+  /groups:
+    post:
+      tags: [Groups]
+      summary: Create a group
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/CreateGroupRequest' }
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/GroupResponse' }
+
+  /groups/{id}/members:
+    post:
+      tags: [Groups]
+      summary: Add or update a member role
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string, format: uuid }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/UpsertMemberRequest' }
+      responses:
+        '204': { description: No Content }
+
+  /groups/{id}/posts/{post_id}/approve:
+    post:
+      tags: [Groups]
+      summary: Approve a pending group post
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string, format: uuid }
+        - in: path
+          name: post_id
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        '204': { description: No Content }
+
+  /media/uploads:
+    post:
+      tags: [Media]
+      summary: Get presigned URLs for media upload
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PresignRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PresignResponse'
+
+  /admin/actions:
+    post:
+      tags: [Admin]
+      summary: Record an admin action (delete/disable/etc.)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/AdminActionRequest' }
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/AdminActionResponse' }
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    UUID:
+      type: string
+      format: uuid
+
+    PostVisibility:
+      type: string
+      enum: [PUBLIC, CONTRACT, LOCATION, GROUP]
+
+    PostType:
+      type: string
+      enum: [TEXT, PHOTO, VIDEO, EVENT, POLL, STORY, QUESTION]
+
+    AttachmentType:
+      type: string
+      enum: [IMAGE, VIDEO]
+
+    ToggleFlagRequest:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+      required: [enabled]
+
+    AttachmentInput:
+      type: object
+      properties:
+        media_type: { $ref: '#/components/schemas/AttachmentType' }
+        storage_key: { type: string }
+      required: [media_type, storage_key]
+
+    CreatePostRequest:
+      type: object
+      properties:
+        type: { $ref: '#/components/schemas/PostType' }
+        visibility: { $ref: '#/components/schemas/PostVisibility' }
+        group_id: { $ref: '#/components/schemas/UUID' }
+        location_ids:
+          type: array
+          items: { $ref: '#/components/schemas/UUID' }
+        content: { type: string }
+        extra: { type: object, additionalProperties: true }
+        attachments:
+          type: array
+          items: { $ref: '#/components/schemas/AttachmentInput' }
+        hashtags:
+          type: array
+          items: { type: string }
+        mentions:
+          type: array
+          items: { $ref: '#/components/schemas/UUID' }
+      required: [type, visibility]
+
+    Attachment:
+      type: object
+      properties:
+        id: { $ref: '#/components/schemas/UUID' }
+        post_id: { $ref: '#/components/schemas/UUID' }
+        media_type: { $ref: '#/components/schemas/AttachmentType' }
+        storage_key: { type: string }
+        thumbnail_key: { type: string, nullable: true }
+        width: { type: integer, nullable: true }
+        height: { type: integer, nullable: true }
+        duration_ms: { type: integer, nullable: true }
+        mime_type: { type: string, nullable: true }
+        size_bytes: { type: integer, nullable: true }
+        status: { type: string, enum: [UPLOADING, READY, FAILED] }
+
+    Post:
+      type: object
+      properties:
+        id: { $ref: '#/components/schemas/UUID' }
+        author_id: { $ref: '#/components/schemas/UUID' }
+        contract_id: { $ref: '#/components/schemas/UUID' }
+        visibility: { $ref: '#/components/schemas/PostVisibility' }
+        type: { $ref: '#/components/schemas/PostType' }
+        group_id: { $ref: '#/components/schemas/UUID', nullable: true }
+        location_ids:
+          type: array
+          items: { $ref: '#/components/schemas/UUID' }
+          nullable: true
+        content: { type: string, nullable: true }
+        extra: { type: object, additionalProperties: true }
+        is_comments_enabled: { type: boolean }
+        is_likes_enabled: { type: boolean }
+        is_shareable: { type: boolean }
+        status: { type: string, enum: [ACTIVE, PENDING_APPROVAL, REJECTED, DELETED] }
+        approved_by: { $ref: '#/components/schemas/UUID', nullable: true }
+        approved_at: { type: string, format: date-time, nullable: true }
+        published_at: { type: string, format: date-time }
+        attachments:
+          type: array
+          items: { $ref: '#/components/schemas/Attachment' }
+        counters:
+          $ref: '#/components/schemas/PostCounters'
+        permissions:
+          $ref: '#/components/schemas/PostPermissions'
+
+    PostCounters:
+      type: object
+      properties:
+        like_count: { type: integer }
+        comment_count: { type: integer }
+        share_count: { type: integer }
+        bookmark_count: { type: integer }
+
+    PostPermissions:
+      type: object
+      properties:
+        can_delete: { type: boolean }
+        can_toggle_comments: { type: boolean }
+        can_toggle_likes: { type: boolean }
+
+    PostResponse:
+      type: object
+      properties:
+        data: { $ref: '#/components/schemas/Post' }
+
+    PostListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items: { $ref: '#/components/schemas/Post' }
+        meta:
+          $ref: '#/components/schemas/PaginationMeta'
+
+    PaginationMeta:
+      type: object
+      properties:
+        page_size: { type: integer }
+        next_cursor: { type: string, nullable: true }
+
+    CreateCommentRequest:
+      type: object
+      properties:
+        content: { type: string }
+        parent_id: { $ref: '#/components/schemas/UUID', nullable: true }
+      required: [content]
+
+    Comment:
+      type: object
+      properties:
+        id: { $ref: '#/components/schemas/UUID' }
+        post_id: { $ref: '#/components/schemas/UUID' }
+        author_id: { $ref: '#/components/schemas/UUID' }
+        parent_id: { $ref: '#/components/schemas/UUID', nullable: true }
+        content: { type: string }
+        status: { type: string, enum: [ACTIVE, DELETED, HIDDEN] }
+        created_at: { type: string, format: date-time }
+        updated_at: { type: string, format: date-time }
+
+    CommentResponse:
+      type: object
+      properties:
+        data: { $ref: '#/components/schemas/Comment' }
+
+    CommentListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items: { $ref: '#/components/schemas/Comment' }
+        meta: { $ref: '#/components/schemas/PaginationMeta' }
+
+    ShareRequest:
+      type: object
+      properties:
+        channel: { type: string, enum: [INTERNAL, LINK] }
+      required: [channel]
+
+    Share:
+      type: object
+      properties:
+        id: { $ref: '#/components/schemas/UUID' }
+        post_id: { $ref: '#/components/schemas/UUID' }
+        user_id: { $ref: '#/components/schemas/UUID' }
+        share_channel: { type: string, enum: [INTERNAL, LINK] }
+        created_at: { type: string, format: date-time }
+
+    ShareResponse:
+      type: object
+      properties:
+        data: { $ref: '#/components/schemas/Share' }
+
+    CreateGroupRequest:
+      type: object
+      properties:
+        name: { type: string }
+        description: { type: string }
+        is_private: { type: boolean, default: false }
+        requires_post_approval: { type: boolean, default: false }
+      required: [name]
+
+    Group:
+      type: object
+      properties:
+        id: { $ref: '#/components/schemas/UUID' }
+        contract_id: { $ref: '#/components/schemas/UUID' }
+        name: { type: string }
+        description: { type: string }
+        is_private: { type: boolean }
+        requires_post_approval: { type: boolean }
+        location_scope:
+          type: array
+          items: { $ref: '#/components/schemas/UUID' }
+        created_by: { $ref: '#/components/schemas/UUID' }
+
+    GroupResponse:
+      type: object
+      properties:
+        data: { $ref: '#/components/schemas/Group' }
+
+    UpsertMemberRequest:
+      type: object
+      properties:
+        user_id: { $ref: '#/components/schemas/UUID' }
+        role: { type: string, enum: [member, admin] }
+      required: [user_id, role]
+
+    PresignRequest:
+      type: object
+      properties:
+        files:
+          type: array
+          items:
+            type: object
+            properties:
+              filename: { type: string }
+              mime: { type: string }
+            required: [filename, mime]
+      required: [files]
+
+    PresignItem:
+      type: object
+      properties:
+        storage_key: { type: string }
+        upload_url: { type: string }
+      required: [storage_key, upload_url]
+
+    PresignResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items: { $ref: '#/components/schemas/PresignItem' }
+
+    AdminActionRequest:
+      type: object
+      properties:
+        target_type: { type: string, enum: [POST, COMMENT, USER] }
+        target_id: { $ref: '#/components/schemas/UUID' }
+        action: { type: string, enum: [DELETE, DISABLE_COMMENTS, DISABLE_LIKES, RESTORE] }
+        reason: { type: string }
+      required: [target_type, target_id, action]
+
+    AdminAction:
+      type: object
+      properties:
+        id: { $ref: '#/components/schemas/UUID' }
+        actor_id: { $ref: '#/components/schemas/UUID' }
+        target_type: { type: string }
+        target_id: { $ref: '#/components/schemas/UUID' }
+        action: { type: string }
+        reason: { type: string }
+        created_at: { type: string, format: date-time }
+
+    AdminActionResponse:
+      type: object
+      properties:
+        data: { $ref: '#/components/schemas/AdminAction' }
