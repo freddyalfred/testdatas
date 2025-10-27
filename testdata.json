@@ -1,0 +1,2128 @@
+{
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "$ref": "#/definitions/Welcome4",
+    "definitions": {
+        "201": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "description": {
+                    "$ref": "#/definitions/Description"
+                },
+                "content": {
+                    "$ref": "#/definitions/Content"
+                }
+            },
+            "required": [
+                "content",
+                "description"
+            ],
+            "title": "201"
+        },
+        "204": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "description": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "description"
+            ],
+            "title": "204"
+        },
+        "Welcome4": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "openapi": {
+                    "type": "string"
+                },
+                "info": {
+                    "$ref": "#/definitions/Info"
+                },
+                "servers": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Server"
+                    }
+                },
+                "security": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Security"
+                    }
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Tag"
+                    }
+                },
+                "paths": {
+                    "$ref": "#/definitions/Paths"
+                },
+                "components": {
+                    "$ref": "#/definitions/Components"
+                }
+            },
+            "required": [
+                "components",
+                "info",
+                "openapi",
+                "paths",
+                "security",
+                "servers",
+                "tags"
+            ],
+            "title": "Welcome4"
+        },
+        "Components": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "securitySchemes": {
+                    "$ref": "#/definitions/SecuritySchemes"
+                },
+                "schemas": {
+                    "$ref": "#/definitions/Schemas"
+                }
+            },
+            "required": [
+                "schemas",
+                "securitySchemes"
+            ],
+            "title": "Components"
+        },
+        "Schemas": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "UUID": {
+                    "$ref": "#/definitions/UUID"
+                },
+                "PostVisibility": {
+                    "$ref": "#/definitions/AttachmentType"
+                },
+                "PostType": {
+                    "$ref": "#/definitions/AttachmentType"
+                },
+                "AttachmentType": {
+                    "$ref": "#/definitions/AttachmentType"
+                },
+                "ToggleFlagRequest": {
+                    "$ref": "#/definitions/ToggleFlagRequest"
+                },
+                "AttachmentInput": {
+                    "$ref": "#/definitions/AttachmentInput"
+                },
+                "CreatePostRequest": {
+                    "$ref": "#/definitions/CreatePostRequest"
+                },
+                "Attachment": {
+                    "$ref": "#/definitions/Attachment"
+                },
+                "Post": {
+                    "$ref": "#/definitions/Post"
+                },
+                "PostCounters": {
+                    "$ref": "#/definitions/PostCounters"
+                },
+                "PostPermissions": {
+                    "$ref": "#/definitions/PostPermissions"
+                },
+                "PostResponse": {
+                    "$ref": "#/definitions/Response"
+                },
+                "PostListResponse": {
+                    "$ref": "#/definitions/TListResponse"
+                },
+                "PaginationMeta": {
+                    "$ref": "#/definitions/PaginationMeta"
+                },
+                "CreateCommentRequest": {
+                    "$ref": "#/definitions/CreateCommentRequest"
+                },
+                "Comment": {
+                    "$ref": "#/definitions/Comment"
+                },
+                "CommentResponse": {
+                    "$ref": "#/definitions/Response"
+                },
+                "CommentListResponse": {
+                    "$ref": "#/definitions/TListResponse"
+                },
+                "ShareRequest": {
+                    "$ref": "#/definitions/ShareRequest"
+                },
+                "Share": {
+                    "$ref": "#/definitions/Share"
+                },
+                "ShareResponse": {
+                    "$ref": "#/definitions/Response"
+                },
+                "CreateGroupRequest": {
+                    "$ref": "#/definitions/CreateGroupRequest"
+                },
+                "Group": {
+                    "$ref": "#/definitions/Group"
+                },
+                "GroupResponse": {
+                    "$ref": "#/definitions/Response"
+                },
+                "UpsertMemberRequest": {
+                    "$ref": "#/definitions/UpsertMemberRequest"
+                },
+                "PresignRequest": {
+                    "$ref": "#/definitions/PresignRequest"
+                },
+                "PresignItem": {
+                    "$ref": "#/definitions/PresignItem"
+                },
+                "PresignResponse": {
+                    "$ref": "#/definitions/PresignResponse"
+                },
+                "AdminActionRequest": {
+                    "$ref": "#/definitions/AdminActionRequest"
+                },
+                "AdminAction": {
+                    "$ref": "#/definitions/AdminAction"
+                },
+                "AdminActionResponse": {
+                    "$ref": "#/definitions/Response"
+                }
+            },
+            "required": [
+                "AdminAction",
+                "AdminActionRequest",
+                "AdminActionResponse",
+                "Attachment",
+                "AttachmentInput",
+                "AttachmentType",
+                "Comment",
+                "CommentListResponse",
+                "CommentResponse",
+                "CreateCommentRequest",
+                "CreateGroupRequest",
+                "CreatePostRequest",
+                "Group",
+                "GroupResponse",
+                "PaginationMeta",
+                "Post",
+                "PostCounters",
+                "PostListResponse",
+                "PostPermissions",
+                "PostResponse",
+                "PostType",
+                "PostVisibility",
+                "PresignItem",
+                "PresignRequest",
+                "PresignResponse",
+                "Share",
+                "ShareRequest",
+                "ShareResponse",
+                "ToggleFlagRequest",
+                "UUID",
+                "UpsertMemberRequest"
+            ],
+            "title": "Schemas"
+        },
+        "AdminAction": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "type": {
+                    "type": "string"
+                },
+                "properties": {
+                    "$ref": "#/definitions/AdminActionProperties"
+                }
+            },
+            "required": [
+                "properties",
+                "type"
+            ],
+            "title": "AdminAction"
+        },
+        "AdminActionProperties": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "$ref": "#/definitions/ActorID"
+                },
+                "actor_id": {
+                    "$ref": "#/definitions/ActorID"
+                },
+                "target_type": {
+                    "$ref": "#/definitions/Action"
+                },
+                "target_id": {
+                    "$ref": "#/definitions/ActorID"
+                },
+                "action": {
+                    "$ref": "#/definitions/Action"
+                },
+                "reason": {
+                    "$ref": "#/definitions/Action"
+                },
+                "created_at": {
+                    "$ref": "#/definitions/UUID"
+                }
+            },
+            "required": [
+                "action",
+                "actor_id",
+                "created_at",
+                "id",
+                "reason",
+                "target_id",
+                "target_type"
+            ],
+            "title": "AdminActionProperties"
+        },
+        "Action": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "type": {
+                    "$ref": "#/definitions/Type"
+                }
+            },
+            "required": [
+                "type"
+            ],
+            "title": "Action"
+        },
+        "ActorID": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "$ref": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "$ref"
+            ],
+            "title": "ActorID"
+        },
+        "UUID": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "type": {
+                    "$ref": "#/definitions/Type"
+                },
+                "format": {
+                    "$ref": "#/definitions/Format"
+                }
+            },
+            "required": [
+                "format",
+                "type"
+            ],
+            "title": "UUID"
+        },
+        "AdminActionRequest": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "type": {
+                    "type": "string"
+                },
+                "properties": {
+                    "$ref": "#/definitions/AdminActionRequestProperties"
+                },
+                "required": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "required": [
+                "properties",
+                "required",
+                "type"
+            ],
+            "title": "AdminActionRequest"
+        },
+        "AdminActionRequestProperties": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "target_type": {
+                    "$ref": "#/definitions/AttachmentType"
+                },
+                "target_id": {
+                    "$ref": "#/definitions/ActorID"
+                },
+                "action": {
+                    "$ref": "#/definitions/AttachmentType"
+                },
+                "reason": {
+                    "$ref": "#/definitions/Action"
+                }
+            },
+            "required": [
+                "action",
+                "reason",
+                "target_id",
+                "target_type"
+            ],
+            "title": "AdminActionRequestProperties"
+        },
+        "AttachmentType": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "type": {
+                    "$ref": "#/definitions/Type"
+                },
+                "enum": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "required": [
+                "enum",
+                "type"
+            ],
+            "title": "AttachmentType"
+        },
+        "Response": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "type": {
+                    "type": "string"
+                },
+                "properties": {
+                    "$ref": "#/definitions/AdminActionResponseProperties"
+                }
+            },
+            "required": [
+                "properties",
+                "type"
+            ],
+            "title": "Response"
+        },
+        "AdminActionResponseProperties": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/ActorID"
+                }
+            },
+            "required": [
+                "data"
+            ],
+            "title": "AdminActionResponseProperties"
+        },
+        "Attachment": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "type": {
+                    "type": "string"
+                },
+                "properties": {
+                    "$ref": "#/definitions/AttachmentProperties"
+                }
+            },
+            "required": [
+                "properties",
+                "type"
+            ],
+            "title": "Attachment"
+        },
+        "AttachmentProperties": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "$ref": "#/definitions/ActorID"
+                },
+                "post_id": {
+                    "$ref": "#/definitions/ActorID"
+                },
+                "media_type": {
+                    "$ref": "#/definitions/ActorID"
+                },
+                "storage_key": {
+                    "$ref": "#/definitions/Action"
+                },
+                "thumbnail_key": {
+                    "$ref": "#/definitions/DurationMS"
+                },
+                "width": {
+                    "$ref": "#/definitions/DurationMS"
+                },
+                "height": {
+                    "$ref": "#/definitions/DurationMS"
+                },
+                "duration_ms": {
+                    "$ref": "#/definitions/DurationMS"
+                },
+                "mime_type": {
+                    "$ref": "#/definitions/DurationMS"
+                },
+                "size_bytes": {
+                    "$ref": "#/definitions/DurationMS"
+                },
+                "status": {
+                    "$ref": "#/definitions/AttachmentType"
+                }
+            },
+            "required": [
+                "duration_ms",
+                "height",
+                "id",
+                "media_type",
+                "mime_type",
+                "post_id",
+                "size_bytes",
+                "status",
+                "storage_key",
+                "thumbnail_key",
+                "width"
+            ],
+            "title": "AttachmentProperties"
+        },
+        "DurationMS": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "type": {
+                    "$ref": "#/definitions/Type"
+                },
+                "nullable": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "nullable",
+                "type"
+            ],
+            "title": "DurationMS"
+        },
+        "AttachmentInput": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "type": {
+                    "type": "string"
+                },
+                "properties": {
+                    "$ref": "#/definitions/AttachmentInputProperties"
+                },
+                "required": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "required": [
+                "properties",
+                "required",
+                "type"
+            ],
+            "title": "AttachmentInput"
+        },
+        "AttachmentInputProperties": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "media_type": {
+                    "$ref": "#/definitions/ActorID"
+                },
+                "storage_key": {
+                    "$ref": "#/definitions/Action"
+                }
+            },
+            "required": [
+                "media_type",
+                "storage_key"
+            ],
+            "title": "AttachmentInputProperties"
+        },
+        "Comment": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "type": {
+                    "type": "string"
+                },
+                "properties": {
+                    "$ref": "#/definitions/CommentProperties"
+                }
+            },
+            "required": [
+                "properties",
+                "type"
+            ],
+            "title": "Comment"
+        },
+        "CommentProperties": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "$ref": "#/definitions/ActorID"
+                },
+                "post_id": {
+                    "$ref": "#/definitions/ActorID"
+                },
+                "author_id": {
+                    "$ref": "#/definitions/ActorID"
+                },
+                "parent_id": {
+                    "$ref": "#/definitions/ParentID"
+                },
+                "content": {
+                    "$ref": "#/definitions/Action"
+                },
+                "status": {
+                    "$ref": "#/definitions/AttachmentType"
+                },
+                "created_at": {
+                    "$ref": "#/definitions/UUID"
+                },
+                "updated_at": {
+                    "$ref": "#/definitions/UUID"
+                }
+            },
+            "required": [
+                "author_id",
+                "content",
+                "created_at",
+                "id",
+                "parent_id",
+                "post_id",
+                "status",
+                "updated_at"
+            ],
+            "title": "CommentProperties"
+        },
+        "ParentID": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "$ref": {
+                    "type": "string"
+                },
+                "nullable": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "$ref",
+                "nullable"
+            ],
+            "title": "ParentID"
+        },
+        "TListResponse": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "type": {
+                    "type": "string"
+                },
+                "properties": {
+                    "$ref": "#/definitions/CommentListResponseProperties"
+                }
+            },
+            "required": [
+                "properties",
+                "type"
+            ],
+            "title": "TListResponse"
+        },
+        "CommentListResponseProperties": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/Data"
+                },
+                "meta": {
+                    "$ref": "#/definitions/ActorID"
+                }
+            },
+            "required": [
+                "data",
+                "meta"
+            ],
+            "title": "CommentListResponseProperties"
+        },
+        "Data": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "type": {
+                    "type": "string"
+                },
+                "items": {
+                    "$ref": "#/definitions/ActorID"
+                }
+            },
+            "required": [
+                "items",
+                "type"
+            ],
+            "title": "Data"
+        },
+        "CreateCommentRequest": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "type": {
+                    "type": "string"
+                },
+                "properties": {
+                    "$ref": "#/definitions/CreateCommentRequestProperties"
+                },
+                "required": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "required": [
+                "properties",
+                "required",
+                "type"
+            ],
+            "title": "CreateCommentRequest"
+        },
+        "CreateCommentRequestProperties": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "content": {
+                    "$ref": "#/definitions/Action"
+                },
+                "parent_id": {
+                    "$ref": "#/definitions/ParentID"
+                }
+            },
+            "required": [
+                "content",
+                "parent_id"
+            ],
+            "title": "CreateCommentRequestProperties"
+        },
+        "CreateGroupRequest": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "type": {
+                    "type": "string"
+                },
+                "properties": {
+                    "$ref": "#/definitions/CreateGroupRequestProperties"
+                },
+                "required": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "required": [
+                "properties",
+                "required",
+                "type"
+            ],
+            "title": "CreateGroupRequest"
+        },
+        "CreateGroupRequestProperties": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "name": {
+                    "$ref": "#/definitions/Action"
+                },
+                "description": {
+                    "$ref": "#/definitions/Action"
+                },
+                "is_private": {
+                    "$ref": "#/definitions/IsPrivate"
+                },
+                "requires_post_approval": {
+                    "$ref": "#/definitions/IsPrivate"
+                }
+            },
+            "required": [
+                "description",
+                "is_private",
+                "name",
+                "requires_post_approval"
+            ],
+            "title": "CreateGroupRequestProperties"
+        },
+        "IsPrivate": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "type": {
+                    "$ref": "#/definitions/Type"
+                },
+                "default": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "default",
+                "type"
+            ],
+            "title": "IsPrivate"
+        },
+        "CreatePostRequest": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "type": {
+                    "type": "string"
+                },
+                "properties": {
+                    "$ref": "#/definitions/CreatePostRequestProperties"
+                },
+                "required": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "required": [
+                "properties",
+                "required",
+                "type"
+            ],
+            "title": "CreatePostRequest"
+        },
+        "CreatePostRequestProperties": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "type": {
+                    "$ref": "#/definitions/ActorID"
+                },
+                "visibility": {
+                    "$ref": "#/definitions/ActorID"
+                },
+                "group_id": {
+                    "$ref": "#/definitions/ActorID"
+                },
+                "location_ids": {
+                    "$ref": "#/definitions/Data"
+                },
+                "content": {
+                    "$ref": "#/definitions/Action"
+                },
+                "extra": {
+                    "$ref": "#/definitions/Extra"
+                },
+                "attachments": {
+                    "$ref": "#/definitions/Data"
+                },
+                "hashtags": {
+                    "$ref": "#/definitions/Hashtags"
+                },
+                "mentions": {
+                    "$ref": "#/definitions/Data"
+                }
+            },
+            "required": [
+                "attachments",
+                "content",
+                "extra",
+                "group_id",
+                "hashtags",
+                "location_ids",
+                "mentions",
+                "type",
+                "visibility"
+            ],
+            "title": "CreatePostRequestProperties"
+        },
+        "Extra": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "type": {
+                    "type": "string"
+                },
+                "additionalProperties": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "additionalProperties",
+                "type"
+            ],
+            "title": "Extra"
+        },
+        "Hashtags": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "type": {
+                    "type": "string"
+                },
+                "items": {
+                    "$ref": "#/definitions/Action"
+                }
+            },
+            "required": [
+                "items",
+                "type"
+            ],
+            "title": "Hashtags"
+        },
+        "Group": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "type": {
+                    "type": "string"
+                },
+                "properties": {
+                    "$ref": "#/definitions/GroupProperties"
+                }
+            },
+            "required": [
+                "properties",
+                "type"
+            ],
+            "title": "Group"
+        },
+        "GroupProperties": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "$ref": "#/definitions/ActorID"
+                },
+                "contract_id": {
+                    "$ref": "#/definitions/ActorID"
+                },
+                "name": {
+                    "$ref": "#/definitions/Action"
+                },
+                "description": {
+                    "$ref": "#/definitions/Action"
+                },
+                "is_private": {
+                    "$ref": "#/definitions/Action"
+                },
+                "requires_post_approval": {
+                    "$ref": "#/definitions/Action"
+                },
+                "location_scope": {
+                    "$ref": "#/definitions/Data"
+                },
+                "created_by": {
+                    "$ref": "#/definitions/ActorID"
+                }
+            },
+            "required": [
+                "contract_id",
+                "created_by",
+                "description",
+                "id",
+                "is_private",
+                "location_scope",
+                "name",
+                "requires_post_approval"
+            ],
+            "title": "GroupProperties"
+        },
+        "PaginationMeta": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "type": {
+                    "type": "string"
+                },
+                "properties": {
+                    "$ref": "#/definitions/PaginationMetaProperties"
+                }
+            },
+            "required": [
+                "properties",
+                "type"
+            ],
+            "title": "PaginationMeta"
+        },
+        "PaginationMetaProperties": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "page_size": {
+                    "$ref": "#/definitions/Action"
+                },
+                "next_cursor": {
+                    "$ref": "#/definitions/DurationMS"
+                }
+            },
+            "required": [
+                "next_cursor",
+                "page_size"
+            ],
+            "title": "PaginationMetaProperties"
+        },
+        "Post": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "type": {
+                    "type": "string"
+                },
+                "properties": {
+                    "$ref": "#/definitions/PostProperties"
+                }
+            },
+            "required": [
+                "properties",
+                "type"
+            ],
+            "title": "Post"
+        },
+        "PostProperties": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "$ref": "#/definitions/ActorID"
+                },
+                "author_id": {
+                    "$ref": "#/definitions/ActorID"
+                },
+                "contract_id": {
+                    "$ref": "#/definitions/ActorID"
+                },
+                "visibility": {
+                    "$ref": "#/definitions/ActorID"
+                },
+                "type": {
+                    "$ref": "#/definitions/ActorID"
+                },
+                "group_id": {
+                    "$ref": "#/definitions/ParentID"
+                },
+                "location_ids": {
+                    "$ref": "#/definitions/LocationIDS"
+                },
+                "content": {
+                    "$ref": "#/definitions/DurationMS"
+                },
+                "extra": {
+                    "$ref": "#/definitions/Extra"
+                },
+                "is_comments_enabled": {
+                    "$ref": "#/definitions/Action"
+                },
+                "is_likes_enabled": {
+                    "$ref": "#/definitions/Action"
+                },
+                "is_shareable": {
+                    "$ref": "#/definitions/Action"
+                },
+                "status": {
+                    "$ref": "#/definitions/AttachmentType"
+                },
+                "approved_by": {
+                    "$ref": "#/definitions/ParentID"
+                },
+                "approved_at": {
+                    "$ref": "#/definitions/ApprovedAt"
+                },
+                "published_at": {
+                    "$ref": "#/definitions/UUID"
+                },
+                "attachments": {
+                    "$ref": "#/definitions/Data"
+                },
+                "counters": {
+                    "$ref": "#/definitions/ActorID"
+                },
+                "permissions": {
+                    "$ref": "#/definitions/ActorID"
+                }
+            },
+            "required": [
+                "approved_at",
+                "approved_by",
+                "attachments",
+                "author_id",
+                "content",
+                "contract_id",
+                "counters",
+                "extra",
+                "group_id",
+                "id",
+                "is_comments_enabled",
+                "is_likes_enabled",
+                "is_shareable",
+                "location_ids",
+                "permissions",
+                "published_at",
+                "status",
+                "type",
+                "visibility"
+            ],
+            "title": "PostProperties"
+        },
+        "ApprovedAt": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "type": {
+                    "$ref": "#/definitions/Type"
+                },
+                "format": {
+                    "$ref": "#/definitions/Format"
+                },
+                "nullable": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "format",
+                "nullable",
+                "type"
+            ],
+            "title": "ApprovedAt"
+        },
+        "LocationIDS": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "type": {
+                    "type": "string"
+                },
+                "items": {
+                    "$ref": "#/definitions/ActorID"
+                },
+                "nullable": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "items",
+                "nullable",
+                "type"
+            ],
+            "title": "LocationIDS"
+        },
+        "PostCounters": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "type": {
+                    "type": "string"
+                },
+                "properties": {
+                    "$ref": "#/definitions/PostCountersProperties"
+                }
+            },
+            "required": [
+                "properties",
+                "type"
+            ],
+            "title": "PostCounters"
+        },
+        "PostCountersProperties": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "like_count": {
+                    "$ref": "#/definitions/Action"
+                },
+                "comment_count": {
+                    "$ref": "#/definitions/Action"
+                },
+                "share_count": {
+                    "$ref": "#/definitions/Action"
+                },
+                "bookmark_count": {
+                    "$ref": "#/definitions/Action"
+                }
+            },
+            "required": [
+                "bookmark_count",
+                "comment_count",
+                "like_count",
+                "share_count"
+            ],
+            "title": "PostCountersProperties"
+        },
+        "PostPermissions": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "type": {
+                    "type": "string"
+                },
+                "properties": {
+                    "$ref": "#/definitions/PostPermissionsProperties"
+                }
+            },
+            "required": [
+                "properties",
+                "type"
+            ],
+            "title": "PostPermissions"
+        },
+        "PostPermissionsProperties": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "can_delete": {
+                    "$ref": "#/definitions/Action"
+                },
+                "can_toggle_comments": {
+                    "$ref": "#/definitions/Action"
+                },
+                "can_toggle_likes": {
+                    "$ref": "#/definitions/Action"
+                }
+            },
+            "required": [
+                "can_delete",
+                "can_toggle_comments",
+                "can_toggle_likes"
+            ],
+            "title": "PostPermissionsProperties"
+        },
+        "PresignItem": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "type": {
+                    "type": "string"
+                },
+                "properties": {
+                    "$ref": "#/definitions/PresignItemProperties"
+                },
+                "required": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "required": [
+                "properties",
+                "required",
+                "type"
+            ],
+            "title": "PresignItem"
+        },
+        "PresignItemProperties": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "storage_key": {
+                    "$ref": "#/definitions/Action"
+                },
+                "upload_url": {
+                    "$ref": "#/definitions/Action"
+                }
+            },
+            "required": [
+                "storage_key",
+                "upload_url"
+            ],
+            "title": "PresignItemProperties"
+        },
+        "PresignRequest": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "type": {
+                    "type": "string"
+                },
+                "properties": {
+                    "$ref": "#/definitions/PresignRequestProperties"
+                },
+                "required": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "required": [
+                "properties",
+                "required",
+                "type"
+            ],
+            "title": "PresignRequest"
+        },
+        "PresignRequestProperties": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "files": {
+                    "$ref": "#/definitions/Files"
+                }
+            },
+            "required": [
+                "files"
+            ],
+            "title": "PresignRequestProperties"
+        },
+        "Files": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "type": {
+                    "type": "string"
+                },
+                "items": {
+                    "$ref": "#/definitions/Items"
+                }
+            },
+            "required": [
+                "items",
+                "type"
+            ],
+            "title": "Files"
+        },
+        "Items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "type": {
+                    "type": "string"
+                },
+                "properties": {
+                    "$ref": "#/definitions/ItemsProperties"
+                },
+                "required": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "required": [
+                "properties",
+                "required",
+                "type"
+            ],
+            "title": "Items"
+        },
+        "ItemsProperties": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "filename": {
+                    "$ref": "#/definitions/Action"
+                },
+                "mime": {
+                    "$ref": "#/definitions/Action"
+                }
+            },
+            "required": [
+                "filename",
+                "mime"
+            ],
+            "title": "ItemsProperties"
+        },
+        "PresignResponse": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "type": {
+                    "type": "string"
+                },
+                "properties": {
+                    "$ref": "#/definitions/PresignResponseProperties"
+                }
+            },
+            "required": [
+                "properties",
+                "type"
+            ],
+            "title": "PresignResponse"
+        },
+        "PresignResponseProperties": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/Data"
+                }
+            },
+            "required": [
+                "data"
+            ],
+            "title": "PresignResponseProperties"
+        },
+        "Share": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "type": {
+                    "type": "string"
+                },
+                "properties": {
+                    "$ref": "#/definitions/ShareProperties"
+                }
+            },
+            "required": [
+                "properties",
+                "type"
+            ],
+            "title": "Share"
+        },
+        "ShareProperties": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "$ref": "#/definitions/ActorID"
+                },
+                "post_id": {
+                    "$ref": "#/definitions/ActorID"
+                },
+                "user_id": {
+                    "$ref": "#/definitions/ActorID"
+                },
+                "share_channel": {
+                    "$ref": "#/definitions/AttachmentType"
+                },
+                "created_at": {
+                    "$ref": "#/definitions/UUID"
+                }
+            },
+            "required": [
+                "created_at",
+                "id",
+                "post_id",
+                "share_channel",
+                "user_id"
+            ],
+            "title": "ShareProperties"
+        },
+        "ShareRequest": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "type": {
+                    "type": "string"
+                },
+                "properties": {
+                    "$ref": "#/definitions/ShareRequestProperties"
+                },
+                "required": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "required": [
+                "properties",
+                "required",
+                "type"
+            ],
+            "title": "ShareRequest"
+        },
+        "ShareRequestProperties": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "channel": {
+                    "$ref": "#/definitions/AttachmentType"
+                }
+            },
+            "required": [
+                "channel"
+            ],
+            "title": "ShareRequestProperties"
+        },
+        "ToggleFlagRequest": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "type": {
+                    "type": "string"
+                },
+                "properties": {
+                    "$ref": "#/definitions/ToggleFlagRequestProperties"
+                },
+                "required": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "required": [
+                "properties",
+                "required",
+                "type"
+            ],
+            "title": "ToggleFlagRequest"
+        },
+        "ToggleFlagRequestProperties": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "enabled": {
+                    "$ref": "#/definitions/Action"
+                }
+            },
+            "required": [
+                "enabled"
+            ],
+            "title": "ToggleFlagRequestProperties"
+        },
+        "UpsertMemberRequest": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "type": {
+                    "type": "string"
+                },
+                "properties": {
+                    "$ref": "#/definitions/UpsertMemberRequestProperties"
+                },
+                "required": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "required": [
+                "properties",
+                "required",
+                "type"
+            ],
+            "title": "UpsertMemberRequest"
+        },
+        "UpsertMemberRequestProperties": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "user_id": {
+                    "$ref": "#/definitions/ActorID"
+                },
+                "role": {
+                    "$ref": "#/definitions/AttachmentType"
+                }
+            },
+            "required": [
+                "role",
+                "user_id"
+            ],
+            "title": "UpsertMemberRequestProperties"
+        },
+        "SecuritySchemes": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "bearerAuth": {
+                    "$ref": "#/definitions/BearerAuth"
+                }
+            },
+            "required": [
+                "bearerAuth"
+            ],
+            "title": "SecuritySchemes"
+        },
+        "BearerAuth": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "type": {
+                    "type": "string"
+                },
+                "scheme": {
+                    "type": "string"
+                },
+                "bearerFormat": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "bearerFormat",
+                "scheme",
+                "type"
+            ],
+            "title": "BearerAuth"
+        },
+        "Info": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "title": {
+                    "type": "string"
+                },
+                "version": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "description",
+                "title",
+                "version"
+            ],
+            "title": "Info"
+        },
+        "Paths": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "/posts": {
+                    "$ref": "#/definitions/Posts"
+                },
+                "/posts/{id}": {
+                    "$ref": "#/definitions/PostsID"
+                },
+                "/posts/{id}/toggle-comments": {
+                    "$ref": "#/definitions/PostsIDToggle"
+                },
+                "/posts/{id}/toggle-likes": {
+                    "$ref": "#/definitions/PostsIDToggle"
+                },
+                "/posts/{id}/like": {
+                    "$ref": "#/definitions/PostsIDBookmarkClass"
+                },
+                "/posts/{id}/bookmark": {
+                    "$ref": "#/definitions/PostsIDBookmarkClass"
+                },
+                "/posts/{id}/share": {
+                    "$ref": "#/definitions/AdminActions"
+                },
+                "/posts/{id}/comments": {
+                    "$ref": "#/definitions/Posts"
+                },
+                "/comments/{comment_id}": {
+                    "$ref": "#/definitions/CommentsCommentID"
+                },
+                "/groups": {
+                    "$ref": "#/definitions/AdminActions"
+                },
+                "/groups/{id}/members": {
+                    "$ref": "#/definitions/GroupsID"
+                },
+                "/groups/{id}/posts/{post_id}/approve": {
+                    "$ref": "#/definitions/GroupsID"
+                },
+                "/media/uploads": {
+                    "$ref": "#/definitions/MediaUploads"
+                },
+                "/admin/actions": {
+                    "$ref": "#/definitions/AdminActions"
+                }
+            },
+            "required": [
+                "/admin/actions",
+                "/comments/{comment_id}",
+                "/groups",
+                "/groups/{id}/members",
+                "/groups/{id}/posts/{post_id}/approve",
+                "/media/uploads",
+                "/posts",
+                "/posts/{id}",
+                "/posts/{id}/bookmark",
+                "/posts/{id}/comments",
+                "/posts/{id}/like",
+                "/posts/{id}/share",
+                "/posts/{id}/toggle-comments",
+                "/posts/{id}/toggle-likes"
+            ],
+            "title": "Paths"
+        },
+        "AdminActions": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "post": {
+                    "$ref": "#/definitions/AdminActionsPost"
+                }
+            },
+            "required": [
+                "post"
+            ],
+            "title": "AdminActions"
+        },
+        "AdminActionsPost": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "summary": {
+                    "type": "string"
+                },
+                "requestBody": {
+                    "$ref": "#/definitions/RequestBody"
+                },
+                "responses": {
+                    "$ref": "#/definitions/PurpleResponses"
+                },
+                "security": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Security"
+                    }
+                },
+                "parameters": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/DeleteParameter"
+                    }
+                }
+            },
+            "required": [
+                "requestBody",
+                "responses",
+                "summary",
+                "tags"
+            ],
+            "title": "AdminActionsPost"
+        },
+        "DeleteParameter": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "in": {
+                    "$ref": "#/definitions/In"
+                },
+                "name": {
+                    "$ref": "#/definitions/Name"
+                },
+                "required": {
+                    "type": "boolean"
+                },
+                "schema": {
+                    "$ref": "#/definitions/UUID"
+                }
+            },
+            "required": [
+                "in",
+                "name",
+                "required",
+                "schema"
+            ],
+            "title": "DeleteParameter"
+        },
+        "RequestBody": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "required": {
+                    "type": "boolean"
+                },
+                "content": {
+                    "$ref": "#/definitions/Content"
+                }
+            },
+            "required": [
+                "content",
+                "required"
+            ],
+            "title": "RequestBody"
+        },
+        "Content": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "application/json": {
+                    "$ref": "#/definitions/ApplicationJSON"
+                }
+            },
+            "required": [
+                "application/json"
+            ],
+            "title": "Content"
+        },
+        "ApplicationJSON": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "schema": {
+                    "$ref": "#/definitions/ActorID"
+                }
+            },
+            "required": [
+                "schema"
+            ],
+            "title": "ApplicationJSON"
+        },
+        "PurpleResponses": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "201": {
+                    "$ref": "#/definitions/201"
+                }
+            },
+            "required": [
+                "201"
+            ],
+            "title": "PurpleResponses"
+        },
+        "Security": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "bearerAuth": {
+                    "type": "array",
+                    "items": {}
+                }
+            },
+            "required": [
+                "bearerAuth"
+            ],
+            "title": "Security"
+        },
+        "CommentsCommentID": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "delete": {
+                    "$ref": "#/definitions/Delete"
+                }
+            },
+            "required": [
+                "delete"
+            ],
+            "title": "CommentsCommentID"
+        },
+        "Delete": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "summary": {
+                    "type": "string"
+                },
+                "parameters": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/DeleteParameter"
+                    }
+                },
+                "responses": {
+                    "$ref": "#/definitions/DeleteResponses"
+                },
+                "requestBody": {
+                    "$ref": "#/definitions/RequestBody"
+                }
+            },
+            "required": [
+                "parameters",
+                "responses",
+                "summary",
+                "tags"
+            ],
+            "title": "Delete"
+        },
+        "DeleteResponses": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "204": {
+                    "$ref": "#/definitions/204"
+                }
+            },
+            "required": [
+                "204"
+            ],
+            "title": "DeleteResponses"
+        },
+        "GroupsID": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "post": {
+                    "$ref": "#/definitions/Delete"
+                }
+            },
+            "required": [
+                "post"
+            ],
+            "title": "GroupsID"
+        },
+        "MediaUploads": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "post": {
+                    "$ref": "#/definitions/GetClass"
+                }
+            },
+            "required": [
+                "post"
+            ],
+            "title": "MediaUploads"
+        },
+        "GetClass": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "summary": {
+                    "type": "string"
+                },
+                "requestBody": {
+                    "$ref": "#/definitions/RequestBody"
+                },
+                "responses": {
+                    "$ref": "#/definitions/GetResponses"
+                },
+                "parameters": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/GetParameter"
+                    }
+                }
+            },
+            "required": [
+                "responses",
+                "summary",
+                "tags"
+            ],
+            "title": "GetClass"
+        },
+        "GetParameter": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "in": {
+                    "$ref": "#/definitions/In"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "schema": {
+                    "$ref": "#/definitions/Schema"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "required": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "in",
+                "name",
+                "schema"
+            ],
+            "title": "GetParameter"
+        },
+        "Schema": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "$ref": {
+                    "type": "string"
+                },
+                "type": {
+                    "$ref": "#/definitions/Type"
+                },
+                "format": {
+                    "$ref": "#/definitions/Format"
+                },
+                "minimum": {
+                    "type": "integer"
+                },
+                "maximum": {
+                    "type": "integer"
+                },
+                "default": {
+                    "type": "integer"
+                }
+            },
+            "required": [],
+            "title": "Schema"
+        },
+        "GetResponses": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "200": {
+                    "$ref": "#/definitions/201"
+                }
+            },
+            "required": [
+                "200"
+            ],
+            "title": "GetResponses"
+        },
+        "Posts": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "post": {
+                    "$ref": "#/definitions/AdminActionsPost"
+                },
+                "get": {
+                    "$ref": "#/definitions/GetClass"
+                }
+            },
+            "required": [
+                "get",
+                "post"
+            ],
+            "title": "Posts"
+        },
+        "PostsID": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "get": {
+                    "$ref": "#/definitions/GetClass"
+                },
+                "delete": {
+                    "$ref": "#/definitions/Delete"
+                }
+            },
+            "required": [
+                "delete",
+                "get"
+            ],
+            "title": "PostsID"
+        },
+        "PostsIDBookmarkClass": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "put": {
+                    "$ref": "#/definitions/Delete"
+                },
+                "delete": {
+                    "$ref": "#/definitions/Delete"
+                }
+            },
+            "required": [
+                "delete",
+                "put"
+            ],
+            "title": "PostsIDBookmarkClass"
+        },
+        "PostsIDToggle": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "put": {
+                    "$ref": "#/definitions/GetClass"
+                }
+            },
+            "required": [
+                "put"
+            ],
+            "title": "PostsIDToggle"
+        },
+        "Server": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "url": {
+                    "type": "string",
+                    "format": "uri",
+                    "qt-uri-protocols": [
+                        "https"
+                    ]
+                },
+                "description": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "description",
+                "url"
+            ],
+            "title": "Server"
+        },
+        "Tag": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "name": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name"
+            ],
+            "title": "Tag"
+        },
+        "Type": {
+            "type": "string",
+            "enum": [
+                "string",
+                "boolean",
+                "integer"
+            ],
+            "title": "Type"
+        },
+        "Format": {
+            "type": "string",
+            "enum": [
+                "date-time",
+                "uuid"
+            ],
+            "title": "Format"
+        },
+        "In": {
+            "type": "string",
+            "enum": [
+                "path",
+                "query"
+            ],
+            "title": "In"
+        },
+        "Name": {
+            "type": "string",
+            "enum": [
+                "comment_id",
+                "id",
+                "post_id"
+            ],
+            "title": "Name"
+        },
+        "Description": {
+            "type": "string",
+            "enum": [
+                "Created",
+                "OK"
+            ],
+            "title": "Description"
+        }
+    }
+}
